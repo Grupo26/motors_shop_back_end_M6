@@ -38,7 +38,7 @@ export class Vehicle {
   users: User;
 
   @OneToMany(() => ImageGalery, (image_galeries) => image_galeries.vehicles)
-  image_galeries: ImageGalery[];
+  imageGaleries: ImageGalery[];
 
   @OneToMany(() => Comment, (comment) => comment.vehicles)
   comments: Comment[];

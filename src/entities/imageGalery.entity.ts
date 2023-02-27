@@ -7,8 +7,8 @@ export class ImageGalery {
   readonly id: string
 
   @Column({ length: 300 })
-  url_image: string
+  urlImage: string
 
-  @ManyToOne(() => Vehicle, (vehicles) => vehicles.image_galeries)
+  @ManyToOne(() => Vehicle, (vehicles) => vehicles.imageGaleries)
   vehicles: Vehicle
 }
