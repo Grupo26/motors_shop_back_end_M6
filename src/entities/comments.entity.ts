@@ -8,7 +8,7 @@ export class Comment {
   readonly id: string;
 
   @Column({ length: 300 })
-  comment_user: string;
+  comment: string;
 
   @CreateDateColumn()
   createdAt: Date;
@@ -19,6 +19,6 @@ export class Comment {
   @ManyToOne(() => User, (user) => user.comments)
   users: User
 
-  @ManyToOne(() => Vehicle, (vehicle) => vehicle.id)
+  @ManyToOne(() => Vehicle, (vehicle) => vehicle.comments)
   vehicles: Vehicle
 }
