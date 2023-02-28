@@ -1,9 +1,10 @@
-import { IVehicle } from "./vehicle";
+import { IVehicleRequest } from "./vehicle";
 
-export interface IImageGalery {
-  id: string;
-
+export interface IImageGaleryRequest {
   urlImage: string;
+  vehicles: IVehicleRequest;
+}
 
-  vehicles: IVehicle;
+export interface IImageGaleryResponse extends IImageGaleryRequest {
+  id: string;
 }

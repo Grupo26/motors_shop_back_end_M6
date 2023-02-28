@@ -1,5 +1,5 @@
-import { IComment } from "./comment";
-import { IVehicle } from "./vehicle";
+import { ICommentResponse } from "./comment";
+import { IVehicleResponse } from "./vehicle";
 
 export interface IUserLogin {
   email?: string;
@@ -19,6 +19,6 @@ export interface IUserResponse extends IUserRequest {
   id: string;
   createdAt: Date;
   updatedAt: Date;
-  vehicles?: IVehicle[];
-  comments?: IComment[];
+  vehicles?: IVehicleResponse[];
+  comments?: ICommentResponse[];
 }

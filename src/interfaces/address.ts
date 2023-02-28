@@ -1,12 +1,15 @@
-import { IUser } from "./user";
+import { IUserResponse } from "./user";
 
-export interface IAddress {
+export interface IAddressRequest {
+  cep?: string;
+  state?: string;
+  city?: string;
+  street?: string;
+  number?: string;
+  complement?: string;
+}
+
+export interface IAddressResponse extends IAddressRequest {
   id: string;
-  cep: string;
-  state: string;
-  city: string;
-  street: string;
-  number: string;
-  complement: string;
-  users: IUser;
+  users: IUserResponse;
 }
