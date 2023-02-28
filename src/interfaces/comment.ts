@@ -1,11 +1,15 @@
-import { IUser } from "./user";
-import { IVehicle } from "./vehicle";
+import { IUserResponse } from "./user";
+import { IVehicleResponse } from "./vehicle";
 
-export interface IComment {
-  id: string;
+export interface ICommentRequest {
   comment: string;
+  vehicleId: string;
+}
+
+export interface ICommentResponse extends ICommentRequest {
+  id: string;
   createdAt: Date;
   updatedAt: Date;
-  users: IUser;
-  vehicles: IVehicle;
+  users: IUserResponse;
+  vehicles: IVehicleResponse;
 }
