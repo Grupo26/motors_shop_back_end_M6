@@ -8,7 +8,6 @@ export const mockedSeller: IUserRequest = {
   phone: "41999357171",
   birthDate: new Date("20/05/2000"),
   typeUser: 'seller',
-  isActive: false,
   password: "123456"
 }
 
@@ -19,7 +18,6 @@ export const mockedBuyer: IUserRequest = {
   phone: "41999357172",
   birthDate: new Date("20/05/2000"),
   typeUser: 'buyer',
-  isActive: true,
   password: "123456"
 }
 
