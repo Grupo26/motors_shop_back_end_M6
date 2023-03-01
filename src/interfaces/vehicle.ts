@@ -1,6 +1,6 @@
 import { ImageGalery } from "../entities/imageGalery.entity";
-import { ICommentResponse } from "./comment";
-import { IUserResponse } from "./user";
+import { Comment } from "../entities/comments.entity";
+import { User } from "../entities/user.entity";
 
 export interface IVehicleUpdateRequest {
   title?: string;
@@ -17,8 +17,8 @@ export interface IVehicleRequest extends IVehicleUpdateRequest {
 }
 
 export interface IVehicleResponse extends IVehicleRequest {
-  users: IUserResponse;
-  comments?: ICommentResponse[];
+  users: User;
+  comments?: Comment[];
 
   createdAt: Date;
   updatedAt: Date;
