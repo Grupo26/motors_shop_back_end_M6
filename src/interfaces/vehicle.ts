@@ -1,15 +1,19 @@
+import { ImageGalery } from "../entities/imageGalery.entity";
 import { ICommentResponse } from "./comment";
-import { IImageGaleryRequest } from "./imageGalery";
 import { IUserResponse } from "./user";
 
-export interface IVehicleRequest {
-  type?: string;
+export interface IVehicleUpdateRequest {
   title?: string;
   description?: string;
   km?: number;
   year?: number;
   value?: number;
-  imageGaleries?: IImageGaleryRequest[];
+
+  imageGaleries?: ImageGalery[];
+}
+
+export interface IVehicleRequest extends IVehicleUpdateRequest {
+  type?: string;
 }
 
 export interface IVehicleResponse extends IVehicleRequest {
