@@ -25,7 +25,7 @@ const loginService = async ({ email, password }: IUserLogin) => {
 
   const token = jwt.sign(
     {
-      email: user.email,
+      typeUser: user.typeUser,
     },
     String(process.env.SECRET_KEY),
     {
@@ -33,7 +33,7 @@ const loginService = async ({ email, password }: IUserLogin) => {
       subject: user.id
     }
   )
-  return token
+  return { token: token, id: user.id, typeUser: user.typeUser }
 }
 
 export default loginService;
