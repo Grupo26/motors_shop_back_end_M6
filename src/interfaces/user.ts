@@ -1,3 +1,4 @@
+import { IAddressRequest } from "./address";
 import { ICommentResponse } from "./comment";
 import { IVehicleResponse } from "./vehicle";
 
@@ -10,9 +11,10 @@ export interface IUserRequest extends IUserLogin {
   name?: string;
   cpf?: string;
   phone?: string;
-  birthDate?: Date;
+  birthdate: string;
   description?: string;
   typeUser?: string;
+  address: IAddressRequest
 }
 
 export interface IUserResponse extends IUserRequest {

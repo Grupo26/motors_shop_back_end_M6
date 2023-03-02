@@ -6,7 +6,7 @@ export class Address {
   @PrimaryGeneratedColumn('uuid')
   readonly id: string;
 
-  @Column({ length: 11 })
+  @Column({ length: 11, default: "0000000" })
   cep: string;
 
   @Column({ length: 40 })
@@ -24,7 +24,4 @@ export class Address {
   @Column({ length: 20, nullable: true })
   complement: string;
 
-  @OneToOne(() => User)
-  @JoinColumn()
-  users: User;
 }
