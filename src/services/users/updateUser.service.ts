@@ -18,7 +18,7 @@ const updateUserService = async (id: string, user: IUserRequest) => {
     email: user.email ? user.email : userEdited.email,
     cpf: user.cpf ? user.cpf : userEdited.cpf,
     phone: user.phone ? user.phone : userEdited.phone,
-    birthDate: user.birthDate ? user.birthDate : userEdited.birthDate,
+    birthdate: user.birthdate ? user.birthdate : userEdited.birthdate,
     description: user.description ? user.description : userEdited.description,
     password: user.password ? await hash(user.password, 10) : userEdited.password,
     typeUser: user.typeUser ? user.typeUser : userEdited.typeUser,

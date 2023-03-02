@@ -1,12 +1,9 @@
 import { Exclude } from "class-transformer";
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, OneToMany, } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, OneToMany, OneToOne, JoinColumn, } from "typeorm";
 import { Comment } from "./comments.entity";
 import { Vehicle } from "./vehicle.entity";
+import { Address } from "./address.entity"
 
-// enum TypeUser {
-//   SELLER = 'seller',
-//   BUYER = 'buyer',
-// }
 
 @Entity('users')
 
@@ -26,8 +23,8 @@ export class User {
   @Column({ length: 15 })
   phone: string;
 
-  @Column()
-  birthDate: Date
+  @Column({ length: 20 })
+  birthdate: string;
 
   @Column({ length: 250, nullable: true })
   description: string
@@ -35,9 +32,6 @@ export class User {
   @Column({ length: 150 })
   @Exclude()
   password: string;
-
-  // @Column({ type: 'enum', enum: TypeUser })
-  // typeUser: TypeUser;
 
   @Column()
   typeUser: string
@@ -48,10 +42,14 @@ export class User {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @OneToMany(() => Vehicle, (vehicle) => vehicle.users)
+  @OneToMany(() => Vehicle, (vehicle) => vehicle.users, { eager: true })
   vehicles: Vehicle[];
 
-  @OneToMany(() => Comment, (comment) => comment.users)
+  @OneToMany(() => Comment, (comment) => comment.users, { eager: true })
   comments: Comment[];
+
+  @OneToOne(() => Address, { eager: true })
+  @JoinColumn()
+  address: Address;
 
 }
