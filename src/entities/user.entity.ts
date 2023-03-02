@@ -29,15 +29,12 @@ export class User {
   @Column()
   birthDate: Date
 
-  @Column({ length: 250 })
+  @Column({ length: 250, nullable: true })
   description: string
 
-  @Column({ length: 50 })
+  @Column({ length: 150 })
   @Exclude()
   password: string;
-
-  @Column({ default: true })
-  isActive: boolean;
 
   @Column({ type: 'enum', enum: TypeUser })
   typeUser: TypeUser;
