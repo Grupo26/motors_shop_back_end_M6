@@ -1,22 +1,26 @@
-import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm"
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from "typeorm";
 import { Comment } from "./comments.entity";
 import { ImageGalery } from "./imageGalery.entity";
 import { User } from "./user.entity";
 
-// enum TypeVehicle {
-//   MOTORCYCLE = 'motorcycle',
-//   CAR = 'car',
-// }
+enum TypeVehicle {
+  MOTORCYCLE = "motorcycle",
+  CAR = "car",
+}
 
 @Entity("vehicles")
 export class Vehicle {
-  @PrimaryGeneratedColumn('uuid')
-  readonly id: number;
+  @PrimaryGeneratedColumn("uuid")
+  readonly id: string;
 
-  // @Column({ type: 'enum', enum: TypeVehicle })
-  // type: TypeVehicle;
-  @Column()
-  type: string
+  @Column({ type: "enum", enum: TypeVehicle })
+  type: TypeVehicle;
 
   @Column({ length: 250 })
   imgCap: string;

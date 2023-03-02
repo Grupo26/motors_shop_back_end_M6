@@ -3,10 +3,10 @@ import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateCol
 import { Comment } from "./comments.entity";
 import { Vehicle } from "./vehicle.entity";
 
-// enum TypeUser {
-//   SELLER = 'seller',
-//   BUYER = 'buyer',
-// }
+enum TypeUser {
+  SELLER = 'seller',
+  BUYER = 'buyer',
+}
 
 @Entity('users')
 
@@ -36,11 +36,8 @@ export class User {
   @Exclude()
   password: string;
 
-  // @Column({ type: 'enum', enum: TypeUser })
-  // typeUser: TypeUser;
-
-  @Column()
-  typeUser: string
+  @Column({ type: 'enum', enum: TypeUser })
+  typeUser: TypeUser;
 
   @CreateDateColumn()
   createdAt: Date;
