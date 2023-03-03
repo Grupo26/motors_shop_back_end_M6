@@ -16,6 +16,7 @@ const updateUserService = async (id: string, user: IUserRequest) => {
   await userRepository.update(id, {
     name: user.name ? user.name : userEdited.name,
     email: user.email ? user.email : userEdited.email,
+    profileImage: user.profileImage ? user.profileImage : userEdited.profileImage,
     cpf: user.cpf ? user.cpf : userEdited.cpf,
     phone: user.phone ? user.phone : userEdited.phone,
     birthdate: user.birthdate ? user.birthdate : userEdited.birthdate,
