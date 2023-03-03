@@ -2,16 +2,18 @@ import AppDataSource from "../../data-source";
 import { User } from "../../entities/user.entity";
 import { AppError } from "../../errors/appErrors";
 
-const retriveUserService = async (id: string) => {
+const retrieveUserService = async (id: string) => {
   const userRepository = AppDataSource.getRepository(User)
-  const users = userRepository.findBy({ id })
+  const user = await userRepository.findOne({
+    where: { id: id },
+    relations: ["vehicles"],
+})
 
-  if (!users) {
-    throw new AppError('Erro na busca de usuarios');
-
+  if (!user) {
+    throw new AppError('Usuário não encontrado.', 404);
   }
 
-  return users
+  return user;
 }
 
-export default retriveUserService;
+export default retrieveUserService;
