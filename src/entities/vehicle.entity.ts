@@ -28,7 +28,7 @@ export class Vehicle {
   @Column({ length: 60 })
   title: string;
 
-  @Column({ length: 300 })
+  @Column({ length: 2000 })
   description: string;
 
   @Column({ type: "decimal" })

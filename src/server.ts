@@ -8,6 +8,6 @@ import AppDataSource from "./data-source";
   });
 
   app.listen(process.env.PORT, () => {
-    console.log("Servidor executando");
+    console.log(`Servidor executando na porta ${process.env.PORT}`);
   });
 })();

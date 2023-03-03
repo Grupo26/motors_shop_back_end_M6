@@ -9,7 +9,7 @@ const createUserService = async ({ name, email, cpf, phone, birthdate, descripti
   const userRepository = AppDataSource.getRepository(User)
   const addressRepository = AppDataSource.getRepository(Address)
 
-  console.log("-------------", address);
+//   console.log("-------------", address);
 
   const newAddress = addressRepository.create(address)
   await addressRepository.save(newAddress)
