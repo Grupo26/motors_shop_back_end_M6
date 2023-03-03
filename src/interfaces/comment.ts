@@ -3,7 +3,6 @@ import { IVehicleResponse } from "./vehicle";
 
 export interface ICommentRequest {
   comment: string;
-  vehicle_id: string;
 }
 
 export interface ICommentResponse extends ICommentRequest {

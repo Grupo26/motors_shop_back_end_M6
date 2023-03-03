@@ -3,11 +3,12 @@ import { Comment } from "../../entities/comments.entity";
 import { User } from "../../entities/user.entity";
 import { Vehicle } from "../../entities/vehicle.entity";
 import { AppError } from "../../errors/appErrors";
-import { ICommentRequest } from "../../interfaces/comment";
 
 const createCommentsServices = async (
-    { comment, vehicle_id }: ICommentRequest,
-    userId: string
+    comment: string,
+    userId: string,
+    vehicle_id: string 
+
 ): Promise<Comment> => {
     const userRepository = AppDataSource.getRepository(User);
     const commentsRepository = AppDataSource.getRepository(Comment);
@@ -16,6 +17,9 @@ const createCommentsServices = async (
     const users = await userRepository.findOneBy({ id: userId });
     const vehicles = await vehicleRepository.findOneBy({ id: vehicle_id });
 
+    if(!comment){
+        throw new AppError('comment is required', 404)
+    }
     if(!users){
         throw new AppError('not found', 404)
     }
@@ -29,20 +33,29 @@ const createCommentsServices = async (
         vehicles,
     })
 
-    // const commentCreate = commentsRepository.create({
+    
+
+    await commentsRepository.save(commentCreate);
+
+    const findComment = await commentsRepository.findOne({
+        where: { id: commentCreate.id },
+        relations: ["vehicles"],
+    });
+
+    // const findComment = await commentsRepository.findOneBy({
+    //     id: commentCreate.id,
+    // });
+
+    return findComment!;
+};
+export default createCommentsServices;
+
+
+
+// const commentCreate = commentsRepository.create({
     //     comment,
     // })
     // const commentCreate = new Comment();
     // commentCreate.comment = comment;
     // commentCreate.users = users;
     // commentCreate.vehicles = vehicles;
-
-    await commentsRepository.save(commentCreate);
-
-    const findComment = await commentsRepository.findOneBy({
-        id: commentCreate.id,
-    });
-
-    return findComment!;
-};
-export default createCommentsServices;
