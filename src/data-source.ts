@@ -8,6 +8,7 @@ import { Address } from "./entities/address.entity";
 import { initialMigration1677789105913 } from "./migrations/1677789105913-initialMigration";
 import { initialMigrations1677789903372 } from "./migrations/1677789903372-initialMigrations";
 import { createTables1677807663093 } from "./migrations/1677807663093-createTables";
+import { modificandoUser1677813345639 } from "./migrations/1677813345639-modificandoUser";
 
 const AppDataSource = new DataSource(
     process.env.NODE_ENV === "test"
@@ -30,7 +31,8 @@ const AppDataSource = new DataSource(
               migrations: [
                   initialMigration1677789105913,
                   initialMigrations1677789903372,
-                  createTables1677807663093
+                  createTables1677807663093,
+                  modificandoUser1677813345639
               ],
           }
 );

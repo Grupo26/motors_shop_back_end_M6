@@ -10,6 +10,7 @@ export interface IUserLogin {
 export interface IUserRequest extends IUserLogin {
   name?: string;
   cpf?: string;
+  profileImage?: string;
   phone?: string;
   birthdate: string;
   description?: string;

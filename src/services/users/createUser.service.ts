@@ -4,7 +4,7 @@ import { IUserRequest } from "../../interfaces/user";
 import { hash } from "bcrypt"
 import { Address } from "../../entities/address.entity";
 
-const createUserService = async ({ name, email, cpf, phone, birthdate, description, password, typeUser, address }: IUserRequest) => {
+const createUserService = async ({ name, email, profileImage, cpf, phone, birthdate, description, password, typeUser, address }: IUserRequest) => {
 
   const userRepository = AppDataSource.getRepository(User)
   const addressRepository = AppDataSource.getRepository(Address)
@@ -17,6 +17,7 @@ const createUserService = async ({ name, email, cpf, phone, birthdate, descripti
   const user = new User()
   user.name = name!
   user.email = email!
+  user.profileImage = profileImage!
   user.cpf = cpf!
   user.phone = phone!
   user.birthdate = birthdate!
