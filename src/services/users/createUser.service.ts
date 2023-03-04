@@ -19,17 +19,17 @@ const createUserService = async ({
 }: IUserRequest) => {
     const userRepository = AppDataSource.getRepository(User);
     const addressRepository = AppDataSource.getRepository(Address);
-    const newAddress = addressRepository.create(address);
+    const newAddress = addressRepository.create({ ...address });
 
-    const emailverify = await userRepository.findOneBy({email: email})
-    const cpfVerify = await userRepository.findOneBy({cpf: cpf})
-    
-    if(emailverify){
-        throw new AppError("email already exist", 409)
+    const emailverify = await userRepository.findOneBy({ email: email });
+    const cpfVerify = await userRepository.findOneBy({ cpf: cpf });
+
+    if (emailverify) {
+        throw new AppError("email already exist", 409);
     }
 
-    if(cpfVerify){
-        throw new AppError("cpf already exist", 409)
+    if (cpfVerify) {
+        throw new AppError("cpf already exist", 409);
     }
 
     await addressRepository.save(newAddress);
@@ -53,3 +53,4 @@ const createUserService = async ({
 };
 
 export default createUserService;
+
