@@ -20,7 +20,7 @@ const appErrors_1 = require("../../errors/appErrors");
 const createUserService = ({ name, email, profileImage, cpf, phone, birthdate, description, password, typeUser, address, }) => __awaiter(void 0, void 0, void 0, function* () {
     const userRepository = data_source_1.default.getRepository(user_entity_1.User);
     const addressRepository = data_source_1.default.getRepository(address_entity_1.Address);
-    const newAddress = addressRepository.create(address);
+    const newAddress = addressRepository.create(Object.assign({}, address));
     const emailverify = yield userRepository.findOneBy({ email: email });
     const cpfVerify = yield userRepository.findOneBy({ cpf: cpf });
     if (emailverify) {

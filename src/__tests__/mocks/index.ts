@@ -5,7 +5,7 @@ export const mockedSeller: IUserRequest = {
     email: "joana@mail.com",
     cpf: "05504478700",
     phone: "41999357171",
-    birthdate: new Date(20052000),
+    birthdate: `${new Date(20052000)}`,
     typeUser: "seller",
     password: "123456",
 };
@@ -15,7 +15,7 @@ export const mockedBuyer: IUserRequest = {
     email: "felipe@mail.com",
     cpf: "05504478701",
     phone: "41999357172",
-    birthdate: new Date(20052000),
+    birthdate: `${new Date(20052000)}`,
     typeUser: "buyer",
     password: "123456",
 };

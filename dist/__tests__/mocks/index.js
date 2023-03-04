@@ -6,24 +6,24 @@ exports.mockedSeller = {
     email: "joana@mail.com",
     cpf: "05504478700",
     phone: "41999357171",
-    birthDate: new Date(20052000),
-    typeUser: 'seller',
-    password: "123456"
+    birthdate: `${new Date(20052000)}`,
+    typeUser: "seller",
+    password: "123456",
 };
 exports.mockedBuyer = {
     name: "Felipe",
     email: "felipe@mail.com",
     cpf: "05504478701",
     phone: "41999357172",
-    birthDate: new Date(20052000),
-    typeUser: 'buyer',
-    password: "123456"
+    birthdate: `${new Date(20052000)}`,
+    typeUser: "buyer",
+    password: "123456",
 };
 exports.mockedSellerLogin = {
     email: "joana@mail.com",
-    password: "123456"
+    password: "123456",
 };
 exports.mockedBuyerLogin = {
     email: "felipe@mail.com",
-    password: "123456"
+    password: "123456",
 };

@@ -12,7 +12,7 @@ export interface IUserRequest extends IUserLogin {
     cpf?: string;
     profileImage?: string;
     phone?: string;
-    birthdate: Date;
+    birthdate: string;
     description?: string;
     typeUser?: string;
     address?: IAddressRequest;
