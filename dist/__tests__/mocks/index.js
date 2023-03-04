@@ -1,6 +1,7 @@
-import { IUserLogin, IUserRequest } from "../../interfaces/user";
-
-export const mockedSeller: IUserRequest = {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.mockedBuyerLogin = exports.mockedSellerLogin = exports.mockedBuyer = exports.mockedSeller = void 0;
+exports.mockedSeller = {
     name: "Joana",
     email: "joana@mail.com",
     cpf: "05504478700",
@@ -9,8 +10,7 @@ export const mockedSeller: IUserRequest = {
     typeUser: "seller",
     password: "123456",
 };
-
-export const mockedBuyer: IUserRequest = {
+exports.mockedBuyer = {
     name: "Felipe",
     email: "felipe@mail.com",
     cpf: "05504478701",
@@ -19,14 +19,11 @@ export const mockedBuyer: IUserRequest = {
     typeUser: "buyer",
     password: "123456",
 };
-
-export const mockedSellerLogin: IUserLogin = {
+exports.mockedSellerLogin = {
     email: "joana@mail.com",
     password: "123456",
 };
-
-export const mockedBuyerLogin: IUserLogin = {
+exports.mockedBuyerLogin = {
     email: "felipe@mail.com",
     password: "123456",
 };
-
