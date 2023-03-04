@@ -11,7 +11,22 @@ import { createTables1677807663093 } from "./migrations/1677807663093-createTabl
 import { modificandoUser1677813345639 } from "./migrations/1677813345639-modificandoUser";
 
 const AppDataSource = new DataSource(
-    process.env.NODE_ENV === "test"
+    process.env.NODE_ENV === "production"
+        ? {
+              type: "postgres",
+              url: process.env.DATABASE_URL,
+              ssl: { rejectUnauthorized: false },
+              synchronize: false,
+              logging: true,
+              entities: [User, Comment, ImageGalery, Vehicle, Address],
+              migrations: [
+                  initialMigration1677789105913,
+                  initialMigrations1677789903372,
+                  createTables1677807663093,
+                  modificandoUser1677813345639,
+              ],
+          }
+        : process.env.NODE_ENV === "test"
         ? {
               type: "sqlite",
               database: ":memory:",
@@ -32,9 +47,10 @@ const AppDataSource = new DataSource(
                   initialMigration1677789105913,
                   initialMigrations1677789903372,
                   createTables1677807663093,
-                  modificandoUser1677813345639
+                  modificandoUser1677813345639,
               ],
           }
 );
 
 export default AppDataSource;
+
