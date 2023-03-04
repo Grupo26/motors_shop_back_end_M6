@@ -5,29 +5,35 @@ import { hash } from "bcrypt";
 import { AppError } from "../../errors/appErrors";
 
 const updateUserService = async (id: string, user: IUserRequest) => {
-  // const { name, email, password } = user
-  const userRepository = AppDataSource.getRepository(User);
-  const userEdited = await userRepository.findOneBy({ id })
+    // const { name, email, password } = user
+    const userRepository = AppDataSource.getRepository(User);
+    const userEdited = await userRepository.findOneBy({ id });
 
-  if (!userEdited) {
-    throw new AppError("Usuário não encontrado", 404)
-  }
+    if (!userEdited) {
+        throw new AppError("Usuário não encontrado", 404);
+    }
 
-  await userRepository.update(id, {
-    name: user.name ? user.name : userEdited.name,
-    email: user.email ? user.email : userEdited.email,
-    profileImage: user.profileImage ? user.profileImage : userEdited.profileImage,
-    cpf: user.cpf ? user.cpf : userEdited.cpf,
-    phone: user.phone ? user.phone : userEdited.phone,
-    birthdate: user.birthdate ? user.birthdate : userEdited.birthdate,
-    description: user.description ? user.description : userEdited.description,
-    password: user.password ? await hash(user.password, 10) : userEdited.password,
-    typeUser: user.typeUser ? user.typeUser : userEdited.typeUser,
-  })
+    await userRepository.update(id, {
+        name: user.name ? user.name : userEdited.name,
+        email: user.email ? user.email : userEdited.email,
+        profileImage: user.profileImage
+            ? user.profileImage
+            : userEdited.profileImage,
+        cpf: user.cpf ? user.cpf : userEdited.cpf,
+        phone: user.phone ? user.phone : userEdited.phone,
+        birthdate: user.birthdate ? user.birthdate : userEdited.birthdate,
+        description: user.description
+            ? user.description
+            : userEdited.description,
+        password: user.password
+            ? await hash(user.password, 10)
+            : userEdited.password,
+        typeUser: user.typeUser ? user.typeUser : userEdited.typeUser,
+    });
 
-  const userEditeded = await userRepository.findOneBy({ id })
+    const userEditeded = await userRepository.findOneBy({ id });
 
-  return userEditeded
-}
+    return userEditeded;
+};
 
 export default updateUserService;
