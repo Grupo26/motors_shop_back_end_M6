@@ -36,6 +36,6 @@ const loginService = ({ email, password }) => __awaiter(void 0, void 0, void 0, 
         expiresIn: '1h',
         subject: user.id
     });
-    return { token: token, id: user.id, typeUser: user.typeUser };
+    return { token: token, id: user.id, typeUser: user.typeUser, name: user.name };
 });
 exports.default = loginService;
