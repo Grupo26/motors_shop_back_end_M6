@@ -75,7 +75,7 @@ __decorate([
     __metadata("design:type", Array)
 ], User.prototype, "comments", void 0);
 __decorate([
-    (0, typeorm_1.OneToOne)(() => address_entity_1.Address),
+    (0, typeorm_1.OneToOne)(() => address_entity_1.Address, { eager: true }),
     (0, typeorm_1.JoinColumn)(),
     __metadata("design:type", address_entity_1.Address)
 ], User.prototype, "address", void 0);

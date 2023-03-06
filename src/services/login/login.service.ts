@@ -33,7 +33,7 @@ const loginService = async ({ email, password }: IUserLogin) => {
       subject: user.id
     }
   )
-  return { token: token, id: user.id, typeUser: user.typeUser }
+  return { token: token, id: user.id, typeUser: user.typeUser, name: user.name }
 }
 
 export default loginService;
