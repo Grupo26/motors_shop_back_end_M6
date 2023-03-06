@@ -1,9 +1,9 @@
 import { instanceToPlain } from "class-transformer"
 import { Request, Response } from "express"
-import createUserService from "../services/users/createUser.service"
-import deleteUserService from "../services/users/deleteUser.service"
-import retriveUserService from "../services/users/retriveUser.service"
-import updateUserService from "../services/users/updateUser.service"
+import createUserService from "../../services/users/createUser.service"
+import deleteUserService from "../../services/users/deleteUser.service"
+import retriveUserService from "../../services/users/retriveUser.service"
+import updateUserService from "../../services/users/updateUser.service"
 
 const createUserController = async (req: Request, res: Response) => {
   const newUser = req.body
@@ -30,7 +30,5 @@ const deleteUserController = async (req: Request, res: Response) => {
   const user = await deleteUserService(id)
   return res.status(204).send()
 }
-
-
 
 export { createUserController, retriveUserController, updateUserController, deleteUserController }
