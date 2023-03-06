@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createCommentsController } from "../controllers/comments";
+import { createCommentsController} from "../controllers/comments";
 import ensureAuthMiddleware from "../middleware/ensureAuth.middleware";
 
 

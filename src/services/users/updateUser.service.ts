@@ -15,7 +15,7 @@ const updateUserService = async (id: string, user: IUserRequest) => {
   console.log(user)
 
   if (!userEdited) {
-    throw new AppError("Usuário não encontrado", 404)
+    throw new AppError("Usuário não encontrado", 404);
   }
 
   if (!addressEdited) {
@@ -43,9 +43,9 @@ const updateUserService = async (id: string, user: IUserRequest) => {
     typeUser: user.typeUser ? user.typeUser : userEdited.typeUser,
   })
 
-  const userEditeded = await userRepository.findOneBy({ id })
+  const userEditeded = await userRepository.findOneBy({ id });
 
-  return userEditeded
-}
+  return userEditeded;
+};
 
 export default updateUserService;

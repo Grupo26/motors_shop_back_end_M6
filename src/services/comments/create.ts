@@ -21,11 +21,11 @@ const createCommentsServices = async (
         throw new AppError('comment is required', 404)
     }
     if(!users){
-        throw new AppError('not found', 404)
+        throw new AppError('User not found', 404)
     }
 
     if(!vehicles){
-        throw new AppError('not found', 404)
+        throw new AppError('Vehicle not found', 404)
     }
     const commentCreate = commentsRepository.create({
         comment,
