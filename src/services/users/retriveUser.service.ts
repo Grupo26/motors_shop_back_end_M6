@@ -6,8 +6,8 @@ const retrieveUserService = async (id: string) => {
   const userRepository = AppDataSource.getRepository(User)
   const user = await userRepository.findOne({
     where: { id: id },
-    relations: ["vehicles"],
-})
+    relations: ["vehicles", "address"],
+  })
 
   if (!user) {
     throw new AppError('Usuário não encontrado.', 404);

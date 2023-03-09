@@ -58,7 +58,7 @@ export class User {
     @OneToMany(() => Comment, (comment) => comment.users)
     comments: Comment[];
 
-    @OneToOne(() => Address, { eager: true })
+    @OneToOne(() => Address)
     @JoinColumn()
     address: Address;
 }
