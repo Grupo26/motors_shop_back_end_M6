@@ -9,17 +9,20 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.registerVehicleController = void 0;
-const register_1 = require("../../services/vehicles/register");
-const uploader_1 = require("../../services/photos/uploader");
-const registerVehicleController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const files = req.files;
-    const data = req.body;
-    const userId = req.user.id;
-    if (!req.files)
-        return res.status(400).json({ message: "No files uploaded" });
-    const photos = yield (0, uploader_1.uploadImageService)(files);
-    const vehicle = yield (0, register_1.registerVehicleService)(data, photos, userId);
-    return res.status(201).json(vehicle);
-});
-exports.registerVehicleController = registerVehicleController;
+exports.alterTablePhotos1678321544095 = void 0;
+class alterTablePhotos1678321544095 {
+    constructor() {
+        this.name = 'alterTablePhotos1678321544095';
+    }
+    up(queryRunner) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield queryRunner.query(`ALTER TABLE "photos" ADD "public_id" character varying NOT NULL`);
+        });
+    }
+    down(queryRunner) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield queryRunner.query(`ALTER TABLE "photos" DROP COLUMN "public_id"`);
+        });
+    }
+}
+exports.alterTablePhotos1678321544095 = alterTablePhotos1678321544095;

@@ -14,11 +14,6 @@ const typeorm_1 = require("typeorm");
 const comments_entity_1 = require("./comments.entity");
 const imageGalery_entity_1 = require("./imageGalery.entity");
 const user_entity_1 = require("./user.entity");
-var TypeVehicle;
-(function (TypeVehicle) {
-    TypeVehicle["MOTORCYCLE"] = "motorcycle";
-    TypeVehicle["CAR"] = "car";
-})(TypeVehicle || (TypeVehicle = {}));
 let Vehicle = class Vehicle {
 };
 __decorate([
@@ -26,13 +21,13 @@ __decorate([
     __metadata("design:type", String)
 ], Vehicle.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: "enum", enum: TypeVehicle }),
+    (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], Vehicle.prototype, "type", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ length: 250 }),
+    (0, typeorm_1.Column)({ nullable: true }),
     __metadata("design:type", String)
-], Vehicle.prototype, "imgCap", void 0);
+], Vehicle.prototype, "adType", void 0);
 __decorate([
     (0, typeorm_1.Column)({ length: 60 }),
     __metadata("design:type", String)
@@ -54,13 +49,14 @@ __decorate([
     __metadata("design:type", Number)
 ], Vehicle.prototype, "value", void 0);
 __decorate([
+    (0, typeorm_1.OneToOne)(() => imageGalery_entity_1.ImageGalery, { eager: true, onDelete: "CASCADE" }),
+    (0, typeorm_1.JoinColumn)(),
+    __metadata("design:type", imageGalery_entity_1.ImageGalery)
+], Vehicle.prototype, "imageGalery", void 0);
+__decorate([
     (0, typeorm_1.ManyToOne)(() => user_entity_1.User, (user) => user.vehicles),
     __metadata("design:type", user_entity_1.User)
 ], Vehicle.prototype, "users", void 0);
-__decorate([
-    (0, typeorm_1.OneToMany)(() => imageGalery_entity_1.ImageGalery, (image_galeries) => image_galeries.vehicles),
-    __metadata("design:type", Array)
-], Vehicle.prototype, "imageGaleries", void 0);
 __decorate([
     (0, typeorm_1.OneToMany)(() => comments_entity_1.Comment, (comment) => comment.vehicles),
     __metadata("design:type", Array)
