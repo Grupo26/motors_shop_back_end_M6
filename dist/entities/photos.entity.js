@@ -9,23 +9,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ImageGalery = void 0;
+exports.Photo = void 0;
 const typeorm_1 = require("typeorm");
-const photos_entity_1 = require("./photos.entity");
-let ImageGalery = class ImageGalery {
+const imageGalery_entity_1 = require("./imageGalery.entity");
+let Photo = class Photo {
 };
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)("uuid"),
     __metadata("design:type", String)
-], ImageGalery.prototype, "id", void 0);
+], Photo.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(() => photos_entity_1.Photo, (photo) => photo.imageGalery, {
-        eager: true,
-        onDelete: "CASCADE",
-    }),
-    __metadata("design:type", Array)
-], ImageGalery.prototype, "photos", void 0);
-ImageGalery = __decorate([
-    (0, typeorm_1.Entity)("image_galeries")
-], ImageGalery);
-exports.ImageGalery = ImageGalery;
+    (0, typeorm_1.Column)({ length: 300 }),
+    __metadata("design:type", String)
+], Photo.prototype, "urlImage", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Photo.prototype, "public_id", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => imageGalery_entity_1.ImageGalery, (imageGalery) => imageGalery.photos),
+    __metadata("design:type", imageGalery_entity_1.ImageGalery)
+], Photo.prototype, "imageGalery", void 0);
+Photo = __decorate([
+    (0, typeorm_1.Entity)("photos")
+], Photo);
+exports.Photo = Photo;

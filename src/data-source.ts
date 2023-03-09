@@ -6,9 +6,9 @@ import { ImageGalery } from "./entities/imageGalery.entity";
 import { Vehicle } from "./entities/vehicle.entity";
 import { Address } from "./entities/address.entity";
 import { initialMigration1677789105913 } from "./migrations/1677789105913-initialMigration";
-import { initialMigrations1677789903372 } from "./migrations/1677789903372-initialMigrations";
-import { createTables1677807663093 } from "./migrations/1677807663093-createTables";
-import { modificandoUser1677813345639 } from "./migrations/1677813345639-modificandoUser";
+import { Photo } from "./entities/photos.entity";
+import { createTables1678321251644 } from "./migrations/1678321251644-createTables";
+import { alterTablePhotos1678321544095 } from "./migrations/1678321544095-alterTablePhotos";
 
 const AppDataSource = new DataSource(
     process.env.NODE_ENV === "production"
@@ -18,12 +18,11 @@ const AppDataSource = new DataSource(
               ssl: { rejectUnauthorized: false },
               synchronize: false,
               logging: true,
-              entities: [User, Comment, ImageGalery, Vehicle, Address],
+              entities: [User, Comment, ImageGalery, Vehicle, Address, Photo],
               migrations: [
                   initialMigration1677789105913,
-                  initialMigrations1677789903372,
-                  createTables1677807663093,
-                  modificandoUser1677813345639,
+                  createTables1678321251644,
+                  alterTablePhotos1678321544095,
               ],
           }
         : process.env.NODE_ENV === "test"
@@ -42,12 +41,11 @@ const AppDataSource = new DataSource(
               database: process.env.POSTGRES_DB,
               logging: true,
               synchronize: false,
-              entities: [User, Comment, ImageGalery, Vehicle, Address],
+              entities: [User, Comment, ImageGalery, Vehicle, Address, Photo],
               migrations: [
                   initialMigration1677789105913,
-                  initialMigrations1677789903372,
-                  createTables1677807663093,
-                  modificandoUser1677813345639,
+                  createTables1678321251644,
+                  alterTablePhotos1678321544095,
               ],
           }
 );

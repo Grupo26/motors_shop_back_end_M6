@@ -8,9 +8,9 @@ const imageGalery_entity_1 = require("./entities/imageGalery.entity");
 const vehicle_entity_1 = require("./entities/vehicle.entity");
 const address_entity_1 = require("./entities/address.entity");
 const _1677789105913_initialMigration_1 = require("./migrations/1677789105913-initialMigration");
-const _1677789903372_initialMigrations_1 = require("./migrations/1677789903372-initialMigrations");
-const _1677807663093_createTables_1 = require("./migrations/1677807663093-createTables");
-const _1677813345639_modificandoUser_1 = require("./migrations/1677813345639-modificandoUser");
+const photos_entity_1 = require("./entities/photos.entity");
+const _1678321251644_createTables_1 = require("./migrations/1678321251644-createTables");
+const _1678321544095_alterTablePhotos_1 = require("./migrations/1678321544095-alterTablePhotos");
 const AppDataSource = new typeorm_1.DataSource(process.env.NODE_ENV === "production"
     ? {
         type: "postgres",
@@ -18,12 +18,11 @@ const AppDataSource = new typeorm_1.DataSource(process.env.NODE_ENV === "product
         ssl: { rejectUnauthorized: false },
         synchronize: false,
         logging: true,
-        entities: [user_entity_1.User, comments_entity_1.Comment, imageGalery_entity_1.ImageGalery, vehicle_entity_1.Vehicle, address_entity_1.Address],
+        entities: [user_entity_1.User, comments_entity_1.Comment, imageGalery_entity_1.ImageGalery, vehicle_entity_1.Vehicle, address_entity_1.Address, photos_entity_1.Photo],
         migrations: [
             _1677789105913_initialMigration_1.initialMigration1677789105913,
-            _1677789903372_initialMigrations_1.initialMigrations1677789903372,
-            _1677807663093_createTables_1.createTables1677807663093,
-            _1677813345639_modificandoUser_1.modificandoUser1677813345639,
+            _1678321251644_createTables_1.createTables1678321251644,
+            _1678321544095_alterTablePhotos_1.alterTablePhotos1678321544095,
         ],
     }
     : process.env.NODE_ENV === "test"
@@ -42,12 +41,11 @@ const AppDataSource = new typeorm_1.DataSource(process.env.NODE_ENV === "product
             database: process.env.POSTGRES_DB,
             logging: true,
             synchronize: false,
-            entities: [user_entity_1.User, comments_entity_1.Comment, imageGalery_entity_1.ImageGalery, vehicle_entity_1.Vehicle, address_entity_1.Address],
+            entities: [user_entity_1.User, comments_entity_1.Comment, imageGalery_entity_1.ImageGalery, vehicle_entity_1.Vehicle, address_entity_1.Address, photos_entity_1.Photo],
             migrations: [
                 _1677789105913_initialMigration_1.initialMigration1677789105913,
-                _1677789903372_initialMigrations_1.initialMigrations1677789903372,
-                _1677807663093_createTables_1.createTables1677807663093,
-                _1677813345639_modificandoUser_1.modificandoUser1677813345639,
+                _1678321251644_createTables_1.createTables1678321251644,
+                _1678321544095_alterTablePhotos_1.alterTablePhotos1678321544095,
             ],
         });
 exports.default = AppDataSource;
