@@ -7,7 +7,10 @@ import { Address } from "../../entities/address.entity";
 
 const updateUserService = async (id: string, user: IUserRequest) => {
   const userRepository = AppDataSource.getRepository(User);
-  const userEdited = await userRepository.findOneBy({ id });
+  const userEdited = await userRepository.findOne({
+    where: { id: id },
+    relations: ["address"]
+  })
   const userAddress = userEdited?.address
   const addressRepository = AppDataSource.getRepository(Address);
   const addressEdited = await addressRepository.findOneBy({ id: userAddress?.id })
