@@ -1,14 +1,16 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm"
-import { Vehicle } from "./vehicle.entity"
+import { Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Photo } from "./photos.entity";
+import { Vehicle } from "./vehicle.entity";
 
 @Entity("image_galeries")
 export class ImageGalery {
-  @PrimaryGeneratedColumn('uuid')
-  readonly id: string
+    @PrimaryGeneratedColumn("uuid")
+    readonly id: string;
 
-  @Column({ length: 300 })
-  urlImage: string
-
-  @ManyToOne(() => Vehicle, (vehicles) => vehicles.imageGaleries)
-  vehicles: Vehicle
+    @OneToMany(() => Photo, (photo) => photo.imageGalery, {
+        eager: true,
+        onDelete: "CASCADE",
+    })
+    photos: Photo[];
 }
+
