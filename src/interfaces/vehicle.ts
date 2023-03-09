@@ -1,25 +1,28 @@
 import { ImageGalery } from "../entities/imageGalery.entity";
 import { Comment } from "../entities/comments.entity";
 import { User } from "../entities/user.entity";
+import { Photo } from "../entities/photos.entity";
 
 export interface IVehicleUpdateRequest {
-  title?: string;
-  description?: string;
-  km?: number;
-  year?: number;
-  value?: number;
+    title?: string;
+    description?: string;
+    km?: number;
+    year?: number;
+    value?: number;
 
-  imageGaleries?: ImageGalery[];
+    imageGalery?: string[];
 }
 
 export interface IVehicleRequest extends IVehicleUpdateRequest {
-  type?: string;
+    type?: string;
+    users?: User;
 }
 
 export interface IVehicleResponse extends IVehicleRequest {
-  users: User;
-  comments?: Comment[];
+    users: User;
+    comments?: Comment[];
 
-  createdAt: Date;
-  updatedAt: Date;
+    createdAt: Date;
+    updatedAt: Date;
 }
+
