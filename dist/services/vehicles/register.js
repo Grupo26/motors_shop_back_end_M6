@@ -17,14 +17,31 @@ const data_source_1 = __importDefault(require("../../data-source"));
 const user_entity_1 = require("../../entities/user.entity");
 const vehicle_entity_1 = require("../../entities/vehicle.entity");
 const appErrors_1 = require("../../errors/appErrors");
-const registerVehicleService = (data, userId) => __awaiter(void 0, void 0, void 0, function* () {
+const imageGalery_entity_1 = require("../../entities/imageGalery.entity");
+const photos_entity_1 = require("../../entities/photos.entity");
+const registerVehicleService = (data, photographies, userId) => __awaiter(void 0, void 0, void 0, function* () {
     const vehicleRepo = data_source_1.default.getRepository(vehicle_entity_1.Vehicle);
+    const imageGaleryRepo = data_source_1.default.getRepository(imageGalery_entity_1.ImageGalery);
+    const photosRepo = data_source_1.default.getRepository(photos_entity_1.Photo);
     const userRepo = data_source_1.default.getRepository(user_entity_1.User);
     const user = yield userRepo.findOneBy({ id: userId });
     if (!user)
         throw new appErrors_1.AppError("Not Found", 404);
+    const photos = [];
+    for (const photography of photographies) {
+        const photo = photosRepo.create({
+            public_id: photography.id,
+            urlImage: photography.url,
+        });
+        yield photosRepo.save(photo);
+        photos.push(photo);
+    }
+    const imageGalery = imageGaleryRepo.create({
+        photos: photos,
+    });
+    yield imageGaleryRepo.save(imageGalery);
     data.users = user;
-    const newVehicle = vehicleRepo.create(data);
+    const newVehicle = vehicleRepo.create(Object.assign(Object.assign({}, data), { imageGalery: imageGalery }));
     yield vehicleRepo.save(newVehicle);
     const vehicle = yield vehicleRepo.findOneBy({ id: newVehicle.id });
     return vehicle;

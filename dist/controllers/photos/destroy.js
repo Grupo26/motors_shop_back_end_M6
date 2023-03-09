@@ -9,17 +9,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.registerVehicleController = void 0;
-const register_1 = require("../../services/vehicles/register");
-const uploader_1 = require("../../services/photos/uploader");
-const registerVehicleController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const files = req.files;
-    const data = req.body;
-    const userId = req.user.id;
-    if (!req.files)
-        return res.status(400).json({ message: "No files uploaded" });
-    const photos = yield (0, uploader_1.uploadImageService)(files);
-    const vehicle = yield (0, register_1.registerVehicleService)(data, photos, userId);
-    return res.status(201).json(vehicle);
+exports.deleteImageController = void 0;
+const delete_1 = require("../../services/photos/delete");
+const deleteImageController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const public_id = req.params.id;
+    yield (0, delete_1.deleteImageService)(public_id);
+    return res.status(204).send();
 });
-exports.registerVehicleController = registerVehicleController;
+exports.deleteImageController = deleteImageController;
