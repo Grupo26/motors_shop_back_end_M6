@@ -5,26 +5,27 @@ import { IVehicleUpdateRequest } from "../../interfaces/vehicle";
 import { getRepoAndObject } from "../../utils/shorts";
 
 const updateVehicleService = async (
-  vehicleId: string,
-  data: IVehicleUpdateRequest
+    vehicleId: string,
+    data: IVehicleUpdateRequest
 ) => {
-  const { object: vehicle, repository: vehicleRepo } = await getRepoAndObject(
-    Vehicle,
-    vehicleId
-  );
-  const { description, km, title, value, year, imageGaleries } = data;
+    const { object: vehicle, repository: vehicleRepo } = await getRepoAndObject(
+        Vehicle,
+        vehicleId
+    );
+    const { description, km, title, value, year, imageGalery } = data;
 
-  vehicleRepo.update(vehicleId, {
-    title: title ? title : vehicle.title,
-    description: description ? description : vehicle.description,
-    km: km ? km : vehicle.km,
-    value: value ? value : vehicle.value,
-    year: year ? year : vehicle.year,
-    imageGaleries: imageGaleries ? imageGaleries : vehicle.imageGaleries,
-  });
+    vehicleRepo.update(vehicleId, {
+        title: title ? title : vehicle.title,
+        description: description ? description : vehicle.description,
+        km: km ? km : vehicle.km,
+        value: value ? value : vehicle.value,
+        year: year ? year : vehicle.year,
+        imageGalery: imageGalery ? imageGalery : vehicle.imageGalery,
+    });
 
-  const updatedData = await vehicleRepo.findOneBy({ id: vehicleId });
+    const updatedData = await vehicleRepo.findOneBy({ id: vehicleId });
 
-  return updatedData ? updatedData : vehicle;
+    return updatedData ? updatedData : vehicle;
 };
 export { updateVehicleService };
+
