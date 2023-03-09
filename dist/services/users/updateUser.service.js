@@ -20,11 +20,14 @@ const address_entity_1 = require("../../entities/address.entity");
 const updateUserService = (id, user) => __awaiter(void 0, void 0, void 0, function* () {
     var _a, _b, _c, _d, _e, _f;
     const userRepository = data_source_1.default.getRepository(user_entity_1.User);
-    const userEdited = yield userRepository.findOneBy({ id });
-    const userAddress = userEdited === null || userEdited === void 0 ? void 0 : userEdited.address;
+    const userEdited = yield userRepository.findOne({
+        where: { id: id },
+        relations: ["address"]
+    });
+    const userAddress = userEdited === null || userEdited === void 0 ? void 0 : userEdited.address.id;
     const addressRepository = data_source_1.default.getRepository(address_entity_1.Address);
-    const addressEdited = yield addressRepository.findOneBy({ id: userAddress === null || userAddress === void 0 ? void 0 : userAddress.id });
-    console.log(user);
+    const addressEdited = yield addressRepository.findOneBy({ id: userAddress });
+    console.log(addressEdited);
     if (!userEdited) {
         throw new appErrors_1.AppError("Usuário não encontrado", 404);
     }
@@ -50,7 +53,10 @@ const updateUserService = (id, user) => __awaiter(void 0, void 0, void 0, functi
         password: user.password ? yield (0, bcrypt_1.hash)(user.password, 10) : userEdited.password,
         typeUser: user.typeUser ? user.typeUser : userEdited.typeUser,
     });
-    const userEditeded = yield userRepository.findOneBy({ id });
+    const userEditeded = yield userRepository.findOne({
+        where: { id: id },
+        relations: ["address"]
+    });
     return userEditeded;
 });
 exports.default = updateUserService;
