@@ -11,11 +11,11 @@ const updateUserService = async (id: string, user: IUserRequest) => {
     where: { id: id },
     relations: ["address"]
   })
-  const userAddress = userEdited?.address
+  const userAddress = userEdited?.address.id
   const addressRepository = AppDataSource.getRepository(Address);
-  const addressEdited = await addressRepository.findOneBy({ id: userAddress?.id })
+  const addressEdited = await addressRepository.findOneBy({ id: userAddress })
 
-  console.log(user)
+  console.log(addressEdited)
 
   if (!userEdited) {
     throw new AppError("Usuário não encontrado", 404);
@@ -46,7 +46,10 @@ const updateUserService = async (id: string, user: IUserRequest) => {
     typeUser: user.typeUser ? user.typeUser : userEdited.typeUser,
   })
 
-  const userEditeded = await userRepository.findOneBy({ id });
+  const userEditeded = await userRepository.findOne({
+    where: { id: id },
+    relations: ["address"]
+  })
 
   return userEditeded;
 };
